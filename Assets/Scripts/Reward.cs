@@ -8,6 +8,7 @@ public class Reward
 {
     public int Count;
     public RewardType Type;
+    public RewardDateTime TimeType;
     public Sprite Icon;
     
 }
