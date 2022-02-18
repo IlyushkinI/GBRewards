@@ -69,7 +69,7 @@ public class DailyRewardController
         if (delta.TotalSeconds < 0)
             delta = new TimeSpan(0);
 
-        _rewardView.RewardDailyTimer.text = delta.ToString();
+        _rewardView.RewardDailyTimer.value = (float)delta.Seconds/ (float)_rewardView.TimeDailyCooldown;
     }
 
     private void InitSlots()
@@ -88,7 +88,6 @@ public class DailyRewardController
     {
         _rewardView.GetRewardButton.onClick.AddListener(() => ClaimReward(RewardDateTime.Daily));
         _rewardView.ResetButton.onClick.AddListener(ResetReward);
-        _rewardView.GetWeekRewardButton.onClick.AddListener(() => ClaimReward(RewardDateTime.Week));
     }
 
     private void ResetReward()
@@ -125,31 +124,5 @@ public class DailyRewardController
         RefreshRewardState();
     }
 
-    private void ClaimWeekReward()
-    {
-        if (_rewardReceived)
-        {
-            return;
-        }
-
-        var reward = _rewardView.DailyRewards[_rewardView.CurrentActiveDailySlot];
-        switch (reward.Type)
-        {
-            case RewardType.None:
-                break;
-            case RewardType.Wood:
-
-                CurrencyWindow.Instance.AddWood(reward.Count);
-                break;
-            case RewardType.Diamond:
-                CurrencyWindow.Instance.AddDiamond(reward.Count);
-                break;
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
-
-        _rewardView.LastRewardDailyTime = DateTime.UtcNow;
-        _rewardView.CurrentActiveDailySlot = (_rewardView.CurrentActiveDailySlot + 1) % _rewardView.DailyRewards.Count;
-        RefreshRewardState();
-    }
+   
 }

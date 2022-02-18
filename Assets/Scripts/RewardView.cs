@@ -28,9 +28,9 @@ public class RewardView : MonoBehaviour
     public List<Reward> WeekRewards;
     [Header("UI")]
     [SerializeField]
-    public TMP_Text RewardDailyTimer;
+    public Slider RewardDailyTimer;
     [SerializeField]
-    public TMP_Text RewardWeekTimer;
+    public Slider RewardWeekTimer;
     [SerializeField]
     public Transform SlotsParent;
     [SerializeField]

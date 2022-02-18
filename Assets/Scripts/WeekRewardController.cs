@@ -54,7 +54,8 @@ public class WeekRewardController
 
     private void RefreshUi()
     {
-        _rewardView.GetRewardButton.interactable = !_rewardReceived;
+        
+        _rewardView.GetWeekRewardButton.interactable = !_rewardReceived; 
 
         for (var i = 0; i < _rewardView.WeekRewards.Count; i++)
         {
@@ -69,7 +70,7 @@ public class WeekRewardController
         if (delta.TotalSeconds < 0)
             delta = new TimeSpan(0);
 
-        _rewardView.RewardWeekTimer.text = delta.ToString();
+        _rewardView.RewardWeekTimer.value = (float)delta.Seconds / (float)_rewardView.TimeWeekCooldown;
     }
 
     private void InitSlots()
@@ -87,7 +88,7 @@ public class WeekRewardController
     private void SubscribeButtons()
     {
         _rewardView.ResetButton.onClick.AddListener(ResetReward);
-        _rewardView.GetWeekRewardButton.onClick.AddListener(() => ClaimReward(RewardDateTime.Week));
+        _rewardView.GetWeekRewardButton.onClick.AddListener(ClaimReward);
     }
 
     private void ResetReward()
@@ -96,7 +97,7 @@ public class WeekRewardController
         _rewardView.CurrentActiveWeekSlot = 0;
     }
 
-    private void ClaimReward(RewardDateTime rewardDateTime)
+    private void ClaimReward()
     {
         if (_rewardReceived)
         {
