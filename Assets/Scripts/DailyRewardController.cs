@@ -10,7 +10,8 @@ public class DailyRewardController
     private List<SlotRewardView> _slots;
 
     private bool _rewardReceived = false;
-
+    private const string _dayTypeCount = "Day";
+    private const string _weekTypeCount = "Week";
     public DailyRewardController(DailyRewardView rewardView)
     {
         _rewardView = rewardView;
@@ -38,15 +39,15 @@ public class DailyRewardController
     private void RefreshRewardState()
     {
         _rewardReceived = false;
-        if (_rewardView.LastRewardTime.HasValue)
+        if (_rewardView.LastDailyRewardTime.HasValue)
         {
-            var timeSpan = DateTime.UtcNow - _rewardView.LastRewardTime.Value;
-            if (timeSpan.Seconds > _rewardView.TimeDeadline)
+            var timeSpan = DateTime.UtcNow - _rewardView.LastDailyRewardTime.Value;
+            if (timeSpan.Seconds > _rewardView.DayTimeDeadline)
             {
-                _rewardView.LastRewardTime = null;
+                _rewardView.LastDailyRewardTime = null;
                 _rewardView.CurrentActiveSlot = 0;
             }
-            else if(timeSpan.Seconds < _rewardView.TimeCooldown)
+            else if(timeSpan.Seconds < _rewardView.DayTimeCooldown)
             {
                 _rewardReceived = true;
             }
@@ -59,18 +60,30 @@ public class DailyRewardController
 
         for (var i = 0; i < _rewardView.DailyRewards.Count; i++)
         {
-            _slots[i].SetData(_rewardView.DailyRewards[i], i+1, i <= _rewardView.CurrentActiveSlot);
+            _slots[i].SetData(i <= _rewardView.CurrentActiveSlot);
         }
 
-        DateTime nextDailyBonusTime = !_rewardView.LastRewardTime.HasValue ? DateTime.MinValue
-                : _rewardView.LastRewardTime.Value.AddSeconds(_rewardView.TimeCooldown);
+        DateTime nextDailyBonusTime = !_rewardView.LastDailyRewardTime.HasValue ? DateTime.MinValue
+                : _rewardView.LastDailyRewardTime.Value.AddSeconds(_rewardView.DayTimeCooldown);
 
-        var delta = nextDailyBonusTime - DateTime.UtcNow;
-        if (delta.TotalSeconds < 0)
-            delta = new TimeSpan(0);
+        var dayDelta = nextDailyBonusTime - DateTime.UtcNow;
+        if (dayDelta.TotalSeconds < 0)
+            dayDelta = new TimeSpan(0);
 
-        _rewardView.DailyRewardTimer.text = delta.ToString();
-        _rewardView.DailyRewardTimerImage.fillAmount = (_rewardView.TimeCooldown - (float)delta.TotalSeconds) / _rewardView.TimeCooldown;
+        _rewardView.DailyRewardTimer.text = dayDelta.ToString();
+        _rewardView.DailyRewardTimerImage.fillAmount = 
+                    (_rewardView.DayTimeCooldown - (float)dayDelta.TotalSeconds) / _rewardView.DayTimeCooldown;
+
+        //DateTime nextWeeklyBonusTime = !_rewardView.LastWeeklyRewardTime.HasValue ? DateTime.MinValue
+        //        : _rewardView.LastWeeklyRewardTime.Value.AddSeconds(_rewardView.WeekTimeCooldown);
+
+        //var weekDelta = nextWeeklyBonusTime - DateTime.UtcNow;
+        //if (weekDelta.TotalSeconds < 0)
+        //    weekDelta = new TimeSpan(0);
+
+        //_rewardView.WeeklyRewardTimer.text = weekDelta.ToString();
+        //_rewardView.WeeklyRewardTimerImage.fillAmount = 
+        //            (_rewardView.WeekTimeCooldown - (float)weekDelta.TotalSeconds) / _rewardView.WeekTimeCooldown;
     }
 
     private void InitSlots()
@@ -80,7 +93,14 @@ public class DailyRewardController
         {
             var reward = _rewardView.DailyRewards[i];
             var slotInstance = GameObject.Instantiate(_rewardView.SlotPrefab, _rewardView.DailySlotsParent, false);
-            slotInstance.SetData(reward, i+1, false);
+            slotInstance.SetData(reward, _dayTypeCount, i + 1, false);
+            _slots.Add(slotInstance);
+        }
+        for (int i = 0; i < _rewardView.WeeklyRewards.Count; i++)
+        {
+            var reward = _rewardView.WeeklyRewards[i];
+            var slotInstance = GameObject.Instantiate(_rewardView.SlotPrefab, _rewardView.WeeklySlotsParent, false);
+            slotInstance.SetData(reward, _weekTypeCount, i + 1, false);
             _slots.Add(slotInstance);
         }
     }
@@ -107,7 +127,7 @@ public class DailyRewardController
 
     private void ResetReward()
     {
-        _rewardView.LastRewardTime = null;
+        _rewardView.LastDailyRewardTime = null;
         _rewardView.CurrentActiveSlot = 0;
     }
 
@@ -130,7 +150,7 @@ public class DailyRewardController
                 throw new ArgumentOutOfRangeException();
         }
 
-        _rewardView.LastRewardTime = DateTime.UtcNow;
+        _rewardView.LastDailyRewardTime = DateTime.UtcNow;
         _rewardView.CurrentActiveSlot = (_rewardView.CurrentActiveSlot + 1) % _rewardView.DailyRewards.Count;
         RefreshRewardState();
     }

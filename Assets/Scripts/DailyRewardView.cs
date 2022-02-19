@@ -7,13 +7,16 @@ using UnityEngine.UI;
 
 public class DailyRewardView : MonoBehaviour
 {
-    private const string LastTimeKey = "LastRewardTime";
+    private const string LastDayTimeKey = "LastDailyRewardTime";
+    private const string LastWeekTimeKey = "LastWeeklyRewardTime";
     private const string ActiveSlotKey = "ActiveSlot";
 
     #region Fields
     [Header("Time settings")]
-    [SerializeField] public int TimeCooldown = 86400;
-    [SerializeField] public int TimeDeadline = 172800;
+    [SerializeField] public int DayTimeCooldown = 86400;
+    [SerializeField] public int WeekTimeCooldown = 604800;
+    [SerializeField] public int DayTimeDeadline = 172800;
+    [SerializeField] public int WeekTimeDeadline = 345600;
     [Space]
 
     [Header("RewardSettings")]
@@ -40,11 +43,11 @@ public class DailyRewardView : MonoBehaviour
         set => PlayerPrefs.SetInt(ActiveSlotKey, value);
     }
 
-    public DateTime? LastRewardTime
+    public DateTime? LastDailyRewardTime
     {
         get
         {
-            var data = PlayerPrefs.GetString(LastTimeKey);
+            var data = PlayerPrefs.GetString(LastDayTimeKey);
             if (string.IsNullOrEmpty(data))
                 return null;
             return DateTime.Parse(data);
@@ -52,11 +55,30 @@ public class DailyRewardView : MonoBehaviour
         set
         {
             if (value != null)
-                PlayerPrefs.SetString(LastTimeKey, value.ToString());
+                PlayerPrefs.SetString(LastDayTimeKey, value.ToString());
             else
-                PlayerPrefs.DeleteKey(LastTimeKey);
+                PlayerPrefs.DeleteKey(LastDayTimeKey);
         }
     }
+
+    public DateTime? LastWeeklyRewardTime
+    {
+        get
+        {
+            var data = PlayerPrefs.GetString(LastWeekTimeKey);
+            if (string.IsNullOrEmpty(data))
+                return null;
+            return DateTime.Parse(data);
+        }
+        set
+        {
+            if (value != null)
+                PlayerPrefs.SetString(LastWeekTimeKey, value.ToString());
+            else
+                PlayerPrefs.DeleteKey(LastWeekTimeKey);
+        }
+    }
+
 
     public void ResetRewardsShowCondition()
     {
