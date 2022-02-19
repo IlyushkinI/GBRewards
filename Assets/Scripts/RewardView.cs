@@ -5,12 +5,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DailyRewardView : MonoBehaviour
-{
-    private const string LastDayTimeKey = "LastDailyRewardTime";
-    private const string LastWeekTimeKey = "LastWeeklyRewardTime";
-    private const string ActiveSlotKey = "ActiveSlot";
-
+public class RewardView : MonoBehaviour
+{  
     #region Fields
     [Header("Time settings")]
     [SerializeField] public int DayTimeCooldown = 86400;
@@ -37,17 +33,22 @@ public class DailyRewardView : MonoBehaviour
     [SerializeField] public Image WeeklyRewardTimerImage;
     #endregion
 
-    public int CurrentActiveSlot
+    public int CurrentActiveDailySlot
     {
-        get => PlayerPrefs.GetInt(ActiveSlotKey);
-        set => PlayerPrefs.SetInt(ActiveSlotKey, value);
+        get => PlayerPrefs.GetInt(PrefsKeys.ActiveDailySlotKey);
+        set => PlayerPrefs.SetInt(PrefsKeys.ActiveDailySlotKey, value);        
+    }
+    public int CurrentActiveWeeklySlot
+    {
+        get => PlayerPrefs.GetInt(PrefsKeys.ActiveWeeklySlotKey);
+        set => PlayerPrefs.SetInt(PrefsKeys.ActiveWeeklySlotKey, value);
     }
 
     public DateTime? LastDailyRewardTime
     {
         get
         {
-            var data = PlayerPrefs.GetString(LastDayTimeKey);
+            var data = PlayerPrefs.GetString(PrefsKeys.LastDayTimeKey);
             if (string.IsNullOrEmpty(data))
                 return null;
             return DateTime.Parse(data);
@@ -55,17 +56,16 @@ public class DailyRewardView : MonoBehaviour
         set
         {
             if (value != null)
-                PlayerPrefs.SetString(LastDayTimeKey, value.ToString());
+                PlayerPrefs.SetString(PrefsKeys.LastDayTimeKey, value.ToString());
             else
-                PlayerPrefs.DeleteKey(LastDayTimeKey);
+                PlayerPrefs.DeleteKey(PrefsKeys.LastDayTimeKey);
         }
     }
-
     public DateTime? LastWeeklyRewardTime
     {
         get
         {
-            var data = PlayerPrefs.GetString(LastWeekTimeKey);
+            var data = PlayerPrefs.GetString(PrefsKeys.LastWeekTimeKey);
             if (string.IsNullOrEmpty(data))
                 return null;
             return DateTime.Parse(data);
@@ -73,9 +73,9 @@ public class DailyRewardView : MonoBehaviour
         set
         {
             if (value != null)
-                PlayerPrefs.SetString(LastWeekTimeKey, value.ToString());
+                PlayerPrefs.SetString(PrefsKeys.LastWeekTimeKey, value.ToString());
             else
-                PlayerPrefs.DeleteKey(LastWeekTimeKey);
+                PlayerPrefs.DeleteKey(PrefsKeys.LastWeekTimeKey);
         }
     }
 

@@ -139,8 +139,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 225940bb8cf85e641964bed81136a65d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeCooldown: 15
-  TimeDeadline: 172800
+  DayTimeCooldown: 86400
+  WeekTimeCooldown: 604800
+  DayTimeDeadline: 172800
+  WeekTimeDeadline: 345600
   DailyRewards:
   - Count: 100
     Type: 1
@@ -450,6 +452,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ShowDailyRewardsButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3333464412840377513, guid: 15b7dd2017c4cf047b86577dc63c6436,
+        type: 3}
+      propertyPath: m_FillAmount
+      value: 0.342
       objectReference: {fileID: 0}
     - target: {fileID: 7250069941063352006, guid: 15b7dd2017c4cf047b86577dc63c6436,
         type: 3}

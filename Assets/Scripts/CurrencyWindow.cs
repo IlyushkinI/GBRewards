@@ -8,25 +8,23 @@ public class CurrencyWindow : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _diamondText;
     [SerializeField] private TextMeshProUGUI _woodText;
 
-    private const string WoodKey = "Wood";
-    private const string DiamondKey = "Diamond";
     public static CurrencyWindow Instance { get; private set; }
 
     private void Start()
     {
-        RefreshText();
+        RefreshText();        
     } 
 
     private int Wood
     {
-        get => PlayerPrefs.GetInt(WoodKey);
-        set => PlayerPrefs.SetInt(WoodKey, value);
+        get => PlayerPrefs.GetInt(PrefsKeys.WoodKey);
+        set => PlayerPrefs.SetInt(PrefsKeys.WoodKey, value);
     }
 
     private int Diamond
     {
-        get => PlayerPrefs.GetInt(DiamondKey);
-        set => PlayerPrefs.SetInt(DiamondKey, value);
+        get => PlayerPrefs.GetInt(PrefsKeys.DiamondKey);
+        set => PlayerPrefs.SetInt(PrefsKeys.DiamondKey, value);
     }
 
     public void AddDiamond(int count)
@@ -60,5 +58,4 @@ public class CurrencyWindow : MonoBehaviour
         if (Instance == this)
             Instance = null;
     }
-
 }
