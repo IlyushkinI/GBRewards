@@ -5,15 +5,12 @@ using UnityEngine;
 
 public class CurrencyWindow : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI _diamondText;
+    [SerializeField] private TextMeshProUGUI _woodText;
+
     private const string WoodKey = "Wood";
     private const string DiamondKey = "Diamond";
-
     public static CurrencyWindow Instance { get; private set; }
-
-    [SerializeField]
-    private TextMeshProUGUI _diamondText;
-    [SerializeField]
-    private TextMeshProUGUI _woodText;
 
     private void Start()
     {

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DailyRewardController
 {
@@ -56,29 +57,29 @@ public class DailyRewardController
     {
         _rewardView.GetRewardButton.interactable = !_rewardReceived;
 
-        for (var i = 0; i < _rewardView.Rewards.Count; i++)
+        for (var i = 0; i < _rewardView.DailyRewards.Count; i++)
         {
-            _slots[i].SetData(_rewardView.Rewards[i], i+1, i <= _rewardView.CurrentActiveSlot);
+            _slots[i].SetData(_rewardView.DailyRewards[i], i+1, i <= _rewardView.CurrentActiveSlot);
         }
 
-        DateTime nextDailyBonusTime =
-            !_rewardView.LastRewardTime.HasValue
-                ? DateTime.MinValue
+        DateTime nextDailyBonusTime = !_rewardView.LastRewardTime.HasValue ? DateTime.MinValue
                 : _rewardView.LastRewardTime.Value.AddSeconds(_rewardView.TimeCooldown);
+
         var delta = nextDailyBonusTime - DateTime.UtcNow;
         if (delta.TotalSeconds < 0)
             delta = new TimeSpan(0);
 
-        _rewardView.RewardTimer.text = delta.ToString();
+        _rewardView.DailyRewardTimer.text = delta.ToString();
+        _rewardView.DailyRewardTimerImage.fillAmount = (_rewardView.TimeCooldown - (float)delta.TotalSeconds) / _rewardView.TimeCooldown;
     }
 
     private void InitSlots()
     {
         _slots = new List<SlotRewardView>();
-        for (int i = 0; i < _rewardView.Rewards.Count; i++)
+        for (int i = 0; i < _rewardView.DailyRewards.Count; i++)
         {
-            var reward = _rewardView.Rewards[i];
-            var slotInstance = GameObject.Instantiate(_rewardView.SlotPrefab, _rewardView.SlotsParent, false);
+            var reward = _rewardView.DailyRewards[i];
+            var slotInstance = GameObject.Instantiate(_rewardView.SlotPrefab, _rewardView.DailySlotsParent, false);
             slotInstance.SetData(reward, i+1, false);
             _slots.Add(slotInstance);
         }
@@ -88,6 +89,20 @@ public class DailyRewardController
     {
         _rewardView.GetRewardButton.onClick.AddListener(ClaimReward);
         _rewardView.ResetButton.onClick.AddListener(ResetReward);
+        _rewardView.ShowDailyRewardsButton.onClick.AddListener(() => 
+                    SetRewardWindow(_rewardView.DailySlotsParent, _rewardView.ShowDailyRewardsButton));
+        _rewardView.ShowWeeklyRewardsButton.onClick.AddListener(() => 
+                    SetRewardWindow(_rewardView.WeeklySlotsParent, _rewardView.ShowWeeklyRewardsButton));
+    }
+
+    private void SetRewardWindow(Transform grid, Button button)
+    {
+        if (button.image.color == Color.green)
+            return;
+
+        _rewardView.ResetRewardsShowCondition();
+        button.image.color = Color.green;
+        grid.gameObject.SetActive(true);
     }
 
     private void ResetReward()
@@ -100,7 +115,7 @@ public class DailyRewardController
     {
         if (_rewardReceived)
             return;
-        var reward = _rewardView.Rewards[_rewardView.CurrentActiveSlot];
+        var reward = _rewardView.DailyRewards[_rewardView.CurrentActiveSlot];
         switch (reward.Type)
         {
             case RewardType.None:
@@ -116,7 +131,7 @@ public class DailyRewardController
         }
 
         _rewardView.LastRewardTime = DateTime.UtcNow;
-        _rewardView.CurrentActiveSlot = (_rewardView.CurrentActiveSlot + 1) % _rewardView.Rewards.Count;
+        _rewardView.CurrentActiveSlot = (_rewardView.CurrentActiveSlot + 1) % _rewardView.DailyRewards.Count;
         RefreshRewardState();
     }
 }
