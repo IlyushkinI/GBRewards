@@ -139,42 +139,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 225940bb8cf85e641964bed81136a65d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeCooldown: 15
-  TimeDeadline: 172800
-  Rewards:
+  DayTimeCooldown: 86400
+  WeekTimeCooldown: 604800
+  DayTimeDeadline: 172800
+  WeekTimeDeadline: 345600
+  DailyRewards:
   - Count: 100
     Type: 1
     Icon: {fileID: 21300000, guid: e0eac6b76fdd842e88a7f8c75ecffaf4, type: 3}
+  - Count: 10
+    Type: 2
+    Icon: {fileID: 21300000, guid: f59401c5c79564fd1ae3bfb0876455a7, type: 3}
+  - Count: 20
+    Type: 2
+    Icon: {fileID: 21300000, guid: f59401c5c79564fd1ae3bfb0876455a7, type: 3}
   - Count: 200
-    Type: 0
+    Type: 1
     Icon: {fileID: 21300000, guid: e0eac6b76fdd842e88a7f8c75ecffaf4, type: 3}
-  - Count: 10
+  - Count: 30
     Type: 2
     Icon: {fileID: 21300000, guid: f59401c5c79564fd1ae3bfb0876455a7, type: 3}
-  - Count: 10
+  WeeklyRewards:
+  - Count: 100
     Type: 2
     Icon: {fileID: 21300000, guid: f59401c5c79564fd1ae3bfb0876455a7, type: 3}
-  - Count: 10
-    Type: 2
-    Icon: {fileID: 21300000, guid: f59401c5c79564fd1ae3bfb0876455a7, type: 3}
-  - Count: 10
-    Type: 2
-    Icon: {fileID: 21300000, guid: f59401c5c79564fd1ae3bfb0876455a7, type: 3}
-  - Count: 10
-    Type: 2
-    Icon: {fileID: 21300000, guid: f59401c5c79564fd1ae3bfb0876455a7, type: 3}
-  - Count: 10
-    Type: 2
-    Icon: {fileID: 21300000, guid: f59401c5c79564fd1ae3bfb0876455a7, type: 3}
-  - Count: 10
-    Type: 2
-    Icon: {fileID: 21300000, guid: f59401c5c79564fd1ae3bfb0876455a7, type: 3}
-  RewardTimer: {fileID: 385561700}
-  SlotsParent: {fileID: 1827698169}
+  - Count: 500
+    Type: 1
+    Icon: {fileID: 21300000, guid: e0eac6b76fdd842e88a7f8c75ecffaf4, type: 3}
+  DailyRewardTimer: {fileID: 385561700}
+  WeeklyRewardTimer: {fileID: 1047854686}
+  DailySlotsParent: {fileID: 1827698169}
+  WeeklySlotsParent: {fileID: 313941691}
   SlotPrefab: {fileID: 4005562293174495102, guid: 37bf757e72aab96429e7985dc0e25f78,
     type: 3}
   ResetButton: {fileID: 1804511172}
   GetRewardButton: {fileID: 260387771}
+  ShowDailyRewardsButton: {fileID: 1086605892}
+  ShowWeeklyRewardsButton: {fileID: 2021831219}
+  DailyRewardTimerImage: {fileID: 628371153}
+  WeeklyRewardTimerImage: {fileID: 942951041}
 --- !u!114 &260387771 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 904241036130064381, guid: 15b7dd2017c4cf047b86577dc63c6436,
@@ -187,6 +190,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &313941691 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1839160608788092744, guid: 15b7dd2017c4cf047b86577dc63c6436,
+    type: 3}
+  m_PrefabInstance: {fileID: 768230161}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &385561700 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 904241035009959871, guid: 15b7dd2017c4cf047b86577dc63c6436,
@@ -282,6 +291,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &628371153 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2379092195805496438, guid: 15b7dd2017c4cf047b86577dc63c6436,
+    type: 3}
+  m_PrefabInstance: {fileID: 768230161}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &768230161
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -411,15 +432,76 @@ PrefabInstance:
       propertyPath: m_Name
       value: Daily Reward Window
       objectReference: {fileID: 0}
+    - target: {fileID: 904241035818933803, guid: 15b7dd2017c4cf047b86577dc63c6436,
+        type: 3}
+      propertyPath: m_Name
+      value: Daily Grid Slots
+      objectReference: {fileID: 0}
+    - target: {fileID: 904241035818933803, guid: 15b7dd2017c4cf047b86577dc63c6436,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 904241036235675995, guid: 15b7dd2017c4cf047b86577dc63c6436,
         type: 3}
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee,
         type: 2}
+    - target: {fileID: 2540696925294193785, guid: 15b7dd2017c4cf047b86577dc63c6436,
+        type: 3}
+      propertyPath: m_Name
+      value: ShowDailyRewardsButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3333464412840377513, guid: 15b7dd2017c4cf047b86577dc63c6436,
+        type: 3}
+      propertyPath: m_FillAmount
+      value: 0.342
+      objectReference: {fileID: 0}
+    - target: {fileID: 7250069941063352006, guid: 15b7dd2017c4cf047b86577dc63c6436,
+        type: 3}
+      propertyPath: m_Name
+      value: WeeklyTimerFill
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 904241035726058330, guid: 15b7dd2017c4cf047b86577dc63c6436, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 15b7dd2017c4cf047b86577dc63c6436, type: 3}
+--- !u!114 &942951041 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3333464412840377513, guid: 15b7dd2017c4cf047b86577dc63c6436,
+    type: 3}
+  m_PrefabInstance: {fileID: 768230161}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1047854686 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2345514514263775626, guid: 15b7dd2017c4cf047b86577dc63c6436,
+    type: 3}
+  m_PrefabInstance: {fileID: 768230161}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1086605892 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2053042470227607433, guid: 15b7dd2017c4cf047b86577dc63c6436,
+    type: 3}
+  m_PrefabInstance: {fileID: 768230161}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1444424562
 GameObject:
   m_ObjectHideFlags: 0
@@ -667,3 +749,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 768230161}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2021831219 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5413317444674182233, guid: 15b7dd2017c4cf047b86577dc63c6436,
+    type: 3}
+  m_PrefabInstance: {fileID: 768230161}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

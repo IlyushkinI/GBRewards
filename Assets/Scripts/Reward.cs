@@ -8,6 +8,5 @@ public class Reward
 {
     public int Count;
     public RewardType Type;
-    public Sprite Icon;
-    
+    public Sprite Icon;  
 }
