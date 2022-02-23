@@ -27,9 +27,9 @@ namespace Assets.Scripts
         public List<Reward> WeeklyRewards;
         [Header("UI")]
         [SerializeField]
-        public TMP_Text DailyRewardTimer;
+        public Slider DailyRewardTimer;
         [SerializeField]
-        public TMP_Text WeeklyRewardTimer;
+        public Slider WeeklyRewardTimer;
         [SerializeField]
         public Transform DailySlotsParent;
         [SerializeField]
@@ -72,6 +72,7 @@ namespace Assets.Scripts
         private void OnDestroy()
         {
             GetDailyRewardButton.onClick.RemoveAllListeners();
+            GetWeeklyRewardButton.onClick.RemoveAllListeners();
             ResetButton.onClick.RemoveAllListeners();
         }
 

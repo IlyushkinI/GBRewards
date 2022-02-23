@@ -89,7 +89,7 @@ namespace Assets.Scripts
             if (delta.TotalSeconds < 0)
                 delta = new TimeSpan(0);
 
-            _rewardView.DailyRewardTimer.text = delta.ToString();
+            _rewardView.DailyRewardTimer.value = 1 - Convert.ToSingle(delta.Seconds) / Convert.ToSingle(_rewardView.DailyTimeCooldown);
 
             for (var i = 0; i < _rewardView.DailyRewards.Count; i++)
             {
@@ -106,7 +106,7 @@ namespace Assets.Scripts
             if (deltaWeekly.TotalSeconds < 0)
                 deltaWeekly = new TimeSpan(0);
 
-            _rewardView.WeeklyRewardTimer.text = deltaWeekly.ToString();
+            _rewardView.WeeklyRewardTimer.value = 1 - Convert.ToSingle(deltaWeekly.Seconds) / Convert.ToSingle(_rewardView.WeeklyTimeCooldown);
 
             for (var i = 0; i < _rewardView.WeeklyRewards.Count; i++)
             {
