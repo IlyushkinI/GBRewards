@@ -102,7 +102,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 3081301211319084869}
   m_Father: {fileID: 7472090556267229192}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -364,7 +365,7 @@ GameObject:
   - component: {fileID: 2665693555337509461}
   - component: {fileID: 6794740681188783650}
   - component: {fileID: 1486033182317695386}
-  - component: {fileID: 6094427234376838097}
+  - component: {fileID: 2927880105052260881}
   m_Layer: 5
   m_Name: Week Reward
   m_TagString: Untagged
@@ -429,7 +430,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6094427234376838097
+--- !u!114 &2927880105052260881
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -438,7 +439,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2256459659935461461}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: bcd3f89c5520ab94cab8d01cf597c0bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -472,6 +473,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+  _easing: 1
+  _transition: 1
+  _duration: 2
+  _power: 10
 --- !u!1 &2947489000749284588
 GameObject:
   m_ObjectHideFlags: 0
@@ -1206,8 +1211,6 @@ RectTransform:
   - {fileID: 7472090556840705045}
   - {fileID: 6602854992964097261}
   - {fileID: 2665693555337509461}
-  - {fileID: 3081301211319084869}
-  - {fileID: 8616976707371888698}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1310,14 +1313,14 @@ MonoBehaviour:
     Type: 2
     TimeType: 1
     Icon: {fileID: 21300000, guid: f59401c5c79564fd1ae3bfb0876455a7, type: 3}
-  RewardDailyTimer: {fileID: 1458103804707580136}
-  RewardWeekTimer: {fileID: 5351994391426592841}
+  RewardDailyTimer: {fileID: 1804068971201157557}
+  RewardWeekTimer: {fileID: 4840219015569145037}
   SlotsParent: {fileID: 7472090556867076291}
   SlotPrefab: {fileID: 4005562293174495102, guid: 37bf757e72aab96429e7985dc0e25f78,
     type: 3}
-  ResetButton: {fileID: 7472090556888396542}
-  GetRewardButton: {fileID: 7472090556284905089}
-  GetWeekRewardButton: {fileID: 6094427234376838097}
+  ResetButton: {fileID: 6516111709439942625}
+  GetRewardButton: {fileID: 7503808754669493716}
+  GetWeekRewardButton: {fileID: 2927880105052260881}
 --- !u!1 &7472090556378507094
 GameObject:
   m_ObjectHideFlags: 0
@@ -1462,7 +1465,7 @@ GameObject:
   - component: {fileID: 7472090556838083985}
   - component: {fileID: 7472090556838083984}
   - component: {fileID: 7472090556838083987}
-  - component: {fileID: 7472090556284905089}
+  - component: {fileID: 7503808754669493716}
   m_Layer: 5
   m_Name: Get Reward Button
   m_TagString: Untagged
@@ -1527,7 +1530,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7472090556284905089
+--- !u!114 &7503808754669493716
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1536,7 +1539,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7472090556838083986}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: bcd3f89c5520ab94cab8d01cf597c0bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -1570,6 +1573,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+  _easing: 1
+  _transition: 1
+  _duration: 2
+  _power: 10
 --- !u!1 &7472090556840705044
 GameObject:
   m_ObjectHideFlags: 0
@@ -1598,7 +1605,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 8616976707371888698}
   m_Father: {fileID: 7472090556267229192}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1714,7 +1722,7 @@ GameObject:
   - component: {fileID: 7472090557599681951}
   - component: {fileID: 7472090557599681949}
   - component: {fileID: 7472090557599681948}
-  - component: {fileID: 7472090556888396542}
+  - component: {fileID: 6516111709439942625}
   m_Layer: 5
   m_Name: Reset Button
   m_TagString: Untagged
@@ -1779,7 +1787,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7472090556888396542
+--- !u!114 &6516111709439942625
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1788,7 +1796,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7472090557599681950}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: bcd3f89c5520ab94cab8d01cf597c0bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -1822,6 +1830,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+  _easing: 1
+  _transition: 1
+  _duration: 2
+  _power: 10
 --- !u!1 &7472090557705582397
 GameObject:
   m_ObjectHideFlags: 0
@@ -1905,7 +1917,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3081301211319084869}
-  - component: {fileID: 5351994391426592841}
+  - component: {fileID: 4840219015569145037}
   m_Layer: 5
   m_Name: WeekSlider
   m_TagString: Untagged
@@ -1920,22 +1932,22 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7480451310418618053}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6080221224517575936}
   - {fileID: 1402771404450787717}
   - {fileID: 6210920865398185549}
-  m_Father: {fileID: 7472090556267229192}
-  m_RootOrder: 7
+  m_Father: {fileID: 6602854992964097261}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -160, y: 641}
+  m_AnchoredPosition: {x: 397.0374, y: -1.9576416}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5351994391426592841
+--- !u!114 &4840219015569145037
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1944,7 +1956,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7480451310418618053}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Script: {fileID: 11500000, guid: 224a0c256e540274cb1a21ab1e1c38a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -1985,6 +1997,10 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+  _easing: 1
+  _transition: 0
+  _duration: 0
+  _power: 0
 --- !u!1 &8352201423719764875
 GameObject:
   m_ObjectHideFlags: 0
@@ -1994,7 +2010,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8616976707371888698}
-  - component: {fileID: 1458103804707580136}
+  - component: {fileID: 1804068971201157557}
   m_Layer: 5
   m_Name: DailySlider
   m_TagString: Untagged
@@ -2009,22 +2025,22 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8352201423719764875}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7597247158238332708}
   - {fileID: 2584765524326347878}
   - {fileID: 3601842613979310238}
-  m_Father: {fileID: 7472090556267229192}
-  m_RootOrder: 8
+  m_Father: {fileID: 7472090556840705045}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -260, y: 715}
+  m_AnchoredPosition: {x: 297.03735, y: -0.95751953}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1458103804707580136
+--- !u!114 &1804068971201157557
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2033,7 +2049,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8352201423719764875}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Script: {fileID: 11500000, guid: 224a0c256e540274cb1a21ab1e1c38a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -2074,3 +2090,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+  _easing: 1
+  _transition: 0
+  _duration: 0
+  _power: 0
