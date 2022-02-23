@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Root : MonoBehaviour
+namespace Assets.Scripts
 {
-    [SerializeField]
-    private DailyRewardView _rewardView;
-
-    private DailyRewardController _controller;
-
-    void Start()
+    public class Root : MonoBehaviour
     {
-        _controller = new DailyRewardController(_rewardView);
+        [SerializeField]
+        private RewardView _rewardView;
+
+        private RewardController _controller;
+        private PlayerRewardDataHandler _dataSaver;
+
+        void Start()
+        {
+            _controller = new RewardController(_rewardView);
+        }
     }
 }
