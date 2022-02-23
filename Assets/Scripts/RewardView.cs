@@ -23,7 +23,8 @@ namespace Assets.Scripts
         public int WeeklyTimeDeadline = 20;
         [Space]
         [Header("RewardSettings")]
-        public List<Reward> Rewards;
+        public List<Reward> DailyRewards;
+        public List<Reward> WeeklyRewards;
         [Header("UI")]
         [SerializeField]
         public TMP_Text DailyRewardTimer;
@@ -49,10 +50,22 @@ namespace Assets.Scripts
             set => _dataSaver.ActiveSlotKeyDaily = value;
         }
 
+        public int CurrentActiveSlotWeekly
+        {
+            get => _dataSaver.ActiveSlotKeyWeekly;
+            set => _dataSaver.ActiveSlotKeyWeekly = value;
+        }
+
         public DateTime? LastRewardTime
         {
             get => _dataSaver.LastTimeKeyDaily;
             set => _dataSaver.LastTimeKeyDaily = value;
+        }
+
+        public DateTime? LastRewardTimeWeekly
+        {
+            get => _dataSaver.LastTimeKeyWeekly;
+            set => _dataSaver.LastTimeKeyWeekly = value;
         }
 
 

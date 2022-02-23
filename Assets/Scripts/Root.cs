@@ -9,12 +9,12 @@ namespace Assets.Scripts
         [SerializeField]
         private RewardView _rewardView;
 
-        private DailyRewardController _controller;
+        private RewardController _controller;
         private PlayerRewardDataHandler _dataSaver;
 
         void Start()
         {
-            _controller = new DailyRewardController(_rewardView);
+            _controller = new RewardController(_rewardView);
         }
     }
 }

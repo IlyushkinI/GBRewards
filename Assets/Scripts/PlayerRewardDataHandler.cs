@@ -20,31 +20,25 @@ namespace Assets.Scripts
         public int WoodCount
         {
             get => _currentPlayerRewardData.WoodCount;
-            set
-            {
-                _currentPlayerRewardData.WoodCount = value;
-                SaveData();
-            }
+            set => _currentPlayerRewardData.WoodCount = value;
         }
 
         public int DimondCount
         {
             get => _currentPlayerRewardData.DiamondCount;
-            set
-            {
-                _currentPlayerRewardData.DiamondCount = value;
-                SaveData();
-            }
+            set => _currentPlayerRewardData.DiamondCount = value;
         }
 
         public int ActiveSlotKeyDaily
         {
             get => _currentPlayerRewardData.ActiveSlotKeyDaily;
-            set
-            {
-                _currentPlayerRewardData.ActiveSlotKeyDaily = value;
-                SaveData();
-            }
+            set => _currentPlayerRewardData.ActiveSlotKeyDaily = value;
+        }
+
+        public int ActiveSlotKeyWeekly
+        {
+            get => _currentPlayerRewardData.ActiveSlotKeyWeekly;
+            set => _currentPlayerRewardData.ActiveSlotKeyWeekly = value;
         }
 
         public DateTime? LastTimeKeyDaily
@@ -52,24 +46,32 @@ namespace Assets.Scripts
             get
             {
                 if (string.IsNullOrEmpty(_currentPlayerRewardData.LastTimeKeyDaily))
-                {
-                    SaveData();
                     return null;
-                }
                 return DateTime.Parse(_currentPlayerRewardData.LastTimeKeyDaily);
             }
             set
             {
                 if (value != null)
-                {
                     _currentPlayerRewardData.LastTimeKeyDaily = value.ToString();
-                    SaveData();
-                }
                 else
-                {
                     _currentPlayerRewardData.LastTimeKeyDaily = default;
-                    SaveData();
-                }
+            }
+        }
+
+        public DateTime? LastTimeKeyWeekly
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_currentPlayerRewardData.LastTimeKeyWeekly))
+                    return null;
+                return DateTime.Parse(_currentPlayerRewardData.LastTimeKeyWeekly);
+            }
+            set
+            {
+                if (value != null)
+                    _currentPlayerRewardData.LastTimeKeyWeekly = value.ToString();
+                else
+                    _currentPlayerRewardData.LastTimeKeyWeekly = default;
             }
         }
 
@@ -84,19 +86,16 @@ namespace Assets.Scripts
                 Directory.CreateDirectory(Application.dataPath + SaveFolder);
                 File.Create(Application.dataPath + SaveFolder + SaveFileName);
                 _currentPlayerRewardData = new PlayerRewardData();
-                SaveData();
             }
             else
-            {
                 _currentPlayerRewardData = LoadData();
-                SaveData();
-            }
             
         }
 
-        private void OnDestroy()
+        private void LateUpdate()
         {
-            SaveData();
+            if(Time.frameCount %200 == 0)
+                SaveData();
         }
 
         #endregion
